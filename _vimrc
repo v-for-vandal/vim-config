@@ -1,3 +1,5 @@
+scriptencoding utf-8
+set encoding=utf-8
 let skip_loading_mswin = 1
 set nocompatible
 set sw=4 ts=4 noexpandtab
@@ -5,7 +7,7 @@ syn on
 filetype plugin indent on
 set tags+="C:\Documents and Settings\aserebriyskiy\My Documents\Fine Objects 11.0.41.0\FineObjects"
 set bs=2
-set listchars=tab:»-,trail:
+set listchars=tab:>-,trail:
 set list
 set textwidth=120
 set cc=+1
