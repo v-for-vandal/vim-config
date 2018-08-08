@@ -5,7 +5,7 @@ set nocompatible
 set sw=4 ts=4 noexpandtab
 syn on
 filetype plugin indent on
-set tags+="C:\Documents and Settings\aserebriyskiy\My Documents\Fine Objects 11.0.41.0\FineObjects"
+"set tags+="C:\Documents and Settings\aserebriyskiy\My Documents\Fine Objects 11.0.41.0\FineObjects"
 set bs=2
 set listchars=tab:>-,trail:
 set list
