@@ -44,3 +44,32 @@ let g:solarized_italic=0
 colorscheme solarized
 highlight ColorColumn guibg=#e86b79
 
+set signcolumn=yes
+
+"LanguageClient
+set runtimepath+=~/.vim-ext-plugins/LanguageClient-neovim
+
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
+    \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
+    \ }
+
+let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+let g:LanguageClient_settingsPath = '/home/aserebriyskiy/.config/nvim/settings.json'
+set completefunc=LanguageClient#complete
+set formatexpr=LanguageClient_textDocument_rangeFormatting()
+
+nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F12> :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> gr :call LanguageClient#textDocument_references()<CR>
+nnoremap <silent> gs :call LanguageClient#textDocument_documentSymbol()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+
+" Support for per-project files
+
+set exrc
+set secure
