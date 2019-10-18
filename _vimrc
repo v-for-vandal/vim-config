@@ -2,14 +2,13 @@ scriptencoding utf-8
 set encoding=utf-8
 let skip_loading_mswin = 1
 set nocompatible
-set sw=4 ts=4 expandtab
+set sw=2 ts=2 expandtab
 syn on
 filetype plugin indent on
-"set tags+="C:\Documents and Settings\aserebriyskiy\My Documents\Fine Objects 11.0.41.0\FineObjects"
 set bs=2
-set listchars=tab:>-,trail:
+set listchars=tab:>-,trail:^
 set list
-set textwidth=120
+set textwidth=80
 set cc=+1
 set laststatus=2
 set history=1000
@@ -51,6 +50,7 @@ Plug 'altercation/vim-colors-solarized'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/Highlight-UnMatched-Brackets'
 
 " Initialize plugin system
 call plug#end()
@@ -94,6 +94,7 @@ let g:fzf_colors =
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 nmap ,b :Buffers<CR>
+nmap ,f :Files<CR>
 
 " == Fuzzy finder
 "nmap ,f :FufFileWithCurrentBufferDir<CR>
@@ -125,14 +126,15 @@ set hidden
 " == LanguageClient
 
 let g:LanguageClient_serverCommands = {
-    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log'],
-    \ 'c': ['cquery', '--log-file=/tmp/cq.log'],
+    \ 'cpp': ['nice', '-n', '19', 'cquery', '--log-file=/tmp/cq.log'],
+    \ 'c': ['nice', '-n', '20', 'cquery', '--log-file=/tmp/cq.log'],
+    \ 'python': ['pyls', ],
     \ }
 
 let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
 let g:LanguageClient_settingsPath = '/home/aserebriyskiy/.config/nvim/settings.json'
 "set completefunc=LanguageClient#complete
-set formatexpr=LanguageClient_textDocument_rangeFormatting()
+"set formatexpr=LanguageClient_textDocument_rangeFormatting()
 
 nnoremap <silent> gh :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
@@ -146,3 +148,8 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 set exrc
 set secure
+
+" Misc
+
+" Doxygen-style comments
+autocmd Filetype c,cpp set comments^=:///
