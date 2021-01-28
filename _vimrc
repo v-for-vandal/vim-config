@@ -50,10 +50,15 @@ Plug 'altercation/vim-colors-solarized'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-scripts/Highlight-UnMatched-Brackets'
+"Plug 'vim-scripts/Highlight-UnMatched-Brackets' " this one is full of bugs
+Plug 'tpope/vim-fugitive'
 
 " Initialize plugin system
 call plug#end()
+
+" == Setting airline ==
+" Disable showing git branch
+let g:airline#extensions#branch#enabled = 0
 
 " == Setting fzf ==
 " This is the default extra key bindings
@@ -126,8 +131,9 @@ set hidden
 " == LanguageClient
 
 let g:LanguageClient_serverCommands = {
-    \ 'cpp': ['nice', '-n', '19', 'cquery', '--log-file=/tmp/cq.log'],
-    \ 'c': ['nice', '-n', '20', 'cquery', '--log-file=/tmp/cq.log'],
+    \ 'cpp': ['nice', '-n', '19', 'ccls', '--log-file=/tmp/cq.log'],
+    \ 'c': ['nice', '-n', '19', 'ccls', '--log-file=/tmp/cq.log'],
+    \ 'cuda': ['nice', '-n', '19', 'ccls', '--log-file=/tmp/cq.log'],
     \ 'python': ['pyls', ],
     \ }
 
